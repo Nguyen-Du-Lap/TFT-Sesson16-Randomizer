@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFT Season 16 Randomizer - Into the Arcane</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background: radial-gradient(circle at center, #0a1428 0%, #050a14 100%);
+            font-family: 'Roboto', sans-serif;
+            color: #f0e6d2;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, .font-game {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hextech-border {
+            border: 2px solid transparent;
+            background: linear-gradient(#0a1428, #0a1428) padding-box,
+                        linear-gradient(to bottom, #c89b3c, #785a28) border-box;
+            box-shadow: 0 0 15px rgba(200, 155, 60, 0.3);
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, #c8aa6e 0%, #785a28 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f0e6d2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+
+        .gold-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(200, 170, 110, 0.6);
+            filter: brightness(1.2);
+        }
+
+        .cost-1 { border: 4px solid #94a3b8; } 
+        .cost-2 { border: 4px solid #22c55e; }  
+        .cost-3 { border: 4px solid #3b82f6; } 
+        .cost-4 { border: 4px solid #a855f7; } 
+        .cost-5, .cost-7 { border: 4px solid #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.6); }
+
+        @keyframes revealCard {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        .animate-reveal {
+            animation: revealCard 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .hex-bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill-opacity='0.05' fill='%23c89b3c' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="hex-bg-pattern flex flex-col items-center py-10 px-4">
+
+    <header class="text-center mb-8">
+        <h1 class="text-4xl md:text-6xl font-bold text-[#c89b3c] drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+            TFT SEASON 16
+        </h1>
+        <p class="text-lg text-[#a09b8c] font-light italic text-center">"Into the Arcane" - Randomizer</p>
+        <div class="h-1 w-48 bg-gradient-to-r from-transparent via-[#c89b3c] to-transparent mx-auto mt-4"></div>
+    </header>
+
+    <main class="w-full max-w-4xl space-y-8">
+        <section class="hextech-border p-6 rounded-lg backdrop-blur-md bg-black/40 text-center">
+            <h2 class="text-xl font-bold mb-4 text-[#c8aa6e] border-b border-[#785a28] pb-2 uppercase">Bá»™ lá»c vÃ ng (Gold)</h2>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                    <input type="checkbox" value="1" checked class="cost-filter accent-[#c89b3c]">
+                    <span>1 VÃ ng</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                    <input type="checkbox" value="2" checked class="cost-filter accent-[#c89b3c]">
+                    <span>2 VÃ ng</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                    <input type="checkbox" value="3" checked class="cost-filter accent-[#c89b3c]">
+                    <span>3 VÃ ng</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                    <input type="checkbox" value="4" checked class="cost-filter accent-[#c89b3c]">
+                    <span>4 VÃ ng</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                    <input type="checkbox" value="5" checked class="cost-filter accent-[#c89b3c]">
+                    <span>5-7 VÃ ng</span>
+                </label>
+            </div>
+        </section>
+
+        <section class="flex flex-col items-center">
+            <div id="result-area" class="min-h-[480px] w-full flex justify-center items-center">
+                <div id="empty-state" class="text-center opacity-30">
+                    <div class="w-56 h-72 border-2 border-dashed border-[#785a28] rounded-2xl flex items-center justify-center mb-4 text-7xl font-game">?</div>
+                    <p class="uppercase tracking-widest">Sáºµn sÃ ng Ä‘á»ƒ ROLL!</p>
+                </div>
+
+                <div id="champ-card" class="hidden w-72 md:w-80 p-1 rounded-2xl bg-[#010a13] relative overflow-hidden transition-all duration-300">
+                    <div class="aspect-[3/4.2] overflow-hidden rounded-t-xl relative bg-[#0a1428]">
+                        <img id="ui-img" src="" alt="TÆ°á»›ng" class="w-full h-full object-cover">
+                        <div id="ui-cost" class="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center font-bold text-black shadow-2xl text-xl border-2 border-white/20">
+                            1
+                        </div>
+                    </div>
+                    <div class="p-6 text-center bg-gradient-to-b from-[#1a2e4d] to-[#050a14]">
+                        <h3 id="ui-name" class="text-3xl font-bold font-game mb-4 text-white drop-shadow-lg leading-tight">NAME</h3>
+                        <div id="ui-traits" class="flex flex-wrap justify-center gap-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-roll" class="mt-8 px-20 py-5 rounded-md font-game text-3xl gold-button text-white font-bold tracking-widest uppercase">
+                ROLL TÆ¯á»šNG
+            </button>
+        </section>
+    </main>
+
+    <script>
+        const imageMap = {
+            // 1 Gold
+            "Sona": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Sona_0.jpg",
+            "Rumble": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Rumble_0.jpg",
+            "Qiyana": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Qiyana_0.jpg",
+            "Illaoi": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Illaoi_0.jpg",
+            "Briar": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Briar_0.jpg",
+            "Blitzcrank": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Blitzcrank_0.jpg",
+            "Anivia": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Anivia_0.jpg",
+            "Viego": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Viego_0.jpg",
+            "Shen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Shen_0.jpg",
+            "Lulu": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Lulu_0.jpg",
+            "Kog'Maw": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/KogMaw_0.jpg",
+            "Jhin": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Jhin_0.jpg",
+            "Jarvan IV": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/JarvanIV_0.jpg",
+            "Caitlyn": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Caitlyn_0.jpg",
+            // 2 Gold
+            "Yorick": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Yorick_0.jpg",
+            "Tryndamere": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Tryndamere_0.jpg",
+            "Tristana": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Tristana_0.jpg",
+            "Teemo": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Teemo_0.jpg",
+            "Sion": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Sion_0.jpg",
+            "Rek'Sai": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/RekSai_0.jpg",
+            "Orianna": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Orianna_0.jpg",
+            "Graves": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Graves_0.jpg",
+            "Cho'Gath": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Chogath_0.jpg",
+            "Bard": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Bard_0.jpg",
+            "Aphelios": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Aphelios_0.jpg",
+            "Yasuo": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Yasuo_0.jpg",
+            "Xin Zhao": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/XinZhao_0.jpg",
+            "Vi": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Vi_0.jpg",
+            "Twisted Fate": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/TwistedFate_0.jpg",
+            // 3 Gold
+            "Poppy": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Poppy_0.jpg",
+            "Neeko": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Neeko_0.jpg",
+            "Ekko": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ekko_0.jpg",
+            "Ashe": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ashe_0.jpg",
+            "Zoe": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Zoe_0.jpg",
+            "Vayne": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Vayne_0.jpg",
+            "Sejuani": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Sejuani_0.jpg",
+            "Nautilus": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Nautilus_0.jpg",
+            "Milio": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Milio_0.jpg",
+            "LeBlanc": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Leblanc_0.jpg",
+            "Draven": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Draven_0.jpg",
+            "Malzahar": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Malzahar_0.jpg",
+            "Leona": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Leona_0.jpg",
+            "Kennen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Kennen_0.jpg",
+            "Jinx": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Jinx_0.jpg",
+            "Gwen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Gwen_0.jpg",
+            "Gangplank": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Gangplank_0.jpg",
+            "Dr. Mundo": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/DrMundo_0.jpg",
+            "Darius": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Darius_0.jpg",
+            "Ahri": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ahri_0.jpg",
+            // 4 Gold
+            "Ngá»™ KhÃ´ng": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/MonkeyKing_0.jpg",
+            "Warwick": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Warwick_0.jpg",
+            "Veigar": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Veigar_0.jpg",
+            "Taric": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Taric_0.jpg",
+            "Skarner": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Skarner_0.jpg",
+            "Singed": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Singed_0.jpg",
+            "Renekton": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Renekton_0.jpg",
+            "Nidalee": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Nidalee_0.jpg",
+            "Nasus": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Nasus_0.jpg",
+            "Miss Fortune": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/MissFortune_0.jpg",
+            "Lissandra": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Lissandra_0.jpg",
+            "Fizz": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Fizz_0.jpg",
+            "Diana": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Diana_0.jpg",
+            "Bel'Veth": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Belveth_0.jpg",
+            "Ambessa": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ambessa_0.jpg",
+            "Sá»© Giáº£ Khe Ná»©t": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/3588.jpg",
+            // 5-7 Gold
+            "Yone": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Yone_0.jpg",
+            "Swain": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Swain_0.jpg",
+            "Seraphine": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Seraphine_0.jpg",
+            "Lux": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Lux_0.jpg",
+            "Kalista": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Kalista_0.jpg",
+            "Kai'Sa": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Kaisa_0.jpg",
+            "Garen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Garen_0.jpg",
+            "Braum": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Braum_0.jpg",
+            "Zilean": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Zilean_0.jpg",
+            "Xerath": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Xerath_0.jpg",
+            "Thresh": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Thresh_0.jpg",
+            "Tahm Kench": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/TahmKench_0.jpg",
+            "Sylas": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Sylas_0.jpg",
+            "Shyvana": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Shyvana_0.jpg",
+            "Ornn": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ornn_0.jpg",
+            "Kindred": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Kindred_0.jpg",
+            "Galio": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Galio_0.jpg",
+            "Fiddlesticks": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_Fiddlesticks.png",
+            "Azir": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Azir_0.jpg",
+            "Aurelion Sol": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/AurelionSol_0.jpg",
+            "Annie": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Annie_0.jpg",
+            "Ziggs": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ziggs_0.jpg",
+            "Volibear": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Volibear_0.jpg",
+            "Sett": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Sett_0.jpg",
+            "Ryze": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Ryze_0.jpg",
+            "Aatrox": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Aatrox_0.jpg",
+            // Special / Arcane Units
+            "Zaahen": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_Zaahen.png",
+            "Mel": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_Mel.png",
+            "Lucian & Senna": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_Lucian.png",
+            "Baron Nashor": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_BaronNashor.png",
+            "T-Hex": "https://ggmeo.com/riot-images/TFTSet16/champion/TFT16_THex.png"
+        };
+
+        const championsData = [
+            { name: "Baron Nashor", cost: 7, traits: ["Monster", "Void"] },
+            { name: "Zaahen", cost: 7, traits: ["God", "Arcane"] },
+            { name: "Ryze", cost: 7, traits: ["Wanderer", "Invoker"] },
+            { name: "Sylas", cost: 7, traits: ["Mage", "Freljord"] },
+            { name: "Annie", cost: 5, traits: ["Arcane", "Mage"] },
+            { name: "Azir", cost: 5, traits: ["Shurima", "Strategist"] },
+            { name: "Fiddlesticks", cost: 5, traits: ["Harvester", "Vanquisher"] },
+            { name: "Galio", cost: 5, traits: ["Demacia", "Bastion"] },
+            { name: "Kindred", cost: 5, traits: ["Eternal", "Quickstriker"] },
+            { name: "Lucian & Senna", cost: 5, traits: ["Twinshot", "Legendary"] },
+            { name: "Mel", cost: 5, traits: ["Council", "Mage"] },
+            { name: "Ornn", cost: 5, traits: ["ForgeMaster"] },
+            { name: "Sett", cost: 5, traits: ["Heartsteel", "Bruiser"] },
+            { name: "Shyvana", cost: 5, traits: ["Dragon", "Bruiser"] },
+            { name: "Tahm Kench", cost: 5, traits: ["Bilgewater", "Bruiser"] },
+            { name: "T-Hex", cost: 5, traits: ["HexMech", "Piltover"] },
+            { name: "Thresh", cost: 5, traits: ["Shadow Isles", "Bastion"] },
+            { name: "Volibear", cost: 5, traits: ["Freljord", "Juggernaut"] },
+            { name: "Xerath", cost: 5, traits: ["Shurima", "Arcanist"] },
+            { name: "Ziggs", cost: 5, traits: ["Yordle", "Multicaster"] },
+            { name: "Zilean", cost: 5, traits: ["Chronokeeper", "Invoker"] },
+            { name: "Aurelion Sol", cost: 5, traits: ["Cosmic", "Invoker"] },
+            { name: "Aatrox", cost: 5, traits: ["Darkin", "Juggernaut"] },
+            { name: "Yone", cost: 5, traits: ["Ionia", "Challenger"] },
+            { name: "Swain", cost: 5, traits: ["Noxus", "Arcanist"] },
+            { name: "Seraphine", cost: 5, traits: ["Idol", "Mage"] },
+            { name: "Lux", cost: 5, traits: ["Demacia", "Arcanist"] },
+            { name: "Kalista", cost: 5, traits: ["Shadow Isles", "Challenger"] },
+            { name: "Kai'Sa", cost: 5, traits: ["Void", "Longshot"] },
+            { name: "Garen", cost: 5, traits: ["Demacia", "Juggernaut"] },
+            { name: "Braum", cost: 5, traits: ["Freljord", "Bruiser"] },
+            { name: "Ambessa", cost: 4, traits: ["Noxus", "Vanquisher"] },
+            { name: "Bel'Veth", cost: 4, traits: ["Empress"] },
+            { name: "Diana", cost: 4, traits: ["Targon", "Slayer"] },
+            { name: "Fizz", cost: 4, traits: ["Bilgewater", "Mage"] },
+            { name: "Miss Fortune", cost: 4, traits: ["Bilgewater", "Strategist"] },
+            { name: "Nasus", cost: 4, traits: ["Shurima", "Juggernaut"] },
+            { name: "Nidalee", cost: 4, traits: ["Ixtal", "Huntress"] },
+            { name: "Renekton", cost: 4, traits: ["Shurima", "Bruiser"] },
+            { name: "Sá»© Giáº£ Khe Ná»©t", cost: 4, traits: ["Void", "Brawler"] },
+            { name: "Singed", cost: 4, traits: ["Zaun", "Juggernaut"] },
+            { name: "Skarner", cost: 4, traits: ["Ixtal", "Bastion"] },
+            { name: "Taric", cost: 4, traits: ["Targon", "Bastion"] },
+            { name: "Veigar", cost: 4, traits: ["Yordle", "Mage"] },
+            { name: "Warwick", cost: 4, traits: ["Zaun", "Quickstriker"] },
+            { name: "Ngá»™ KhÃ´ng", cost: 4, traits: ["Ionia", "Challenger"] },
+            { name: "Ahri", cost: 3, traits: ["Ionia", "Arcanist"] },
+            { name: "Darius", cost: 3, traits: ["Noxus", "Juggernaut"] },
+            { name: "Draven", cost: 3, traits: ["Noxus", "Quickstriker"] },
+            { name: "Dr. Mundo", cost: 3, traits: ["Zaun", "Bruiser"] },
+            { name: "Gangplank", cost: 3, traits: ["Bilgewater", "Gunner"] },
+            { name: "Gwen", cost: 3, traits: ["Shadow Isles", "Slayer"] },
+            { name: "Jinx", cost: 3, traits: ["Zaun", "Gunslinger"] },
+            { name: "Kennen", cost: 3, traits: ["Ionia", "Bastion"] },
+            { name: "LeBlanc", cost: 3, traits: ["Noxus", "Invoker"] },
+            { name: "Leona", cost: 3, traits: ["Targon", "Bastion"] },
+            { name: "Malzahar", cost: 3, traits: ["Void", "Arcanist"] },
+            { name: "Milio", cost: 3, traits: ["Ixtal", "Invoker"] },
+            { name: "Nautilus", cost: 3, traits: ["Bilgewater", "Juggernaut"] },
+            { name: "Sejuani", cost: 3, traits: ["Freljord", "Bruiser"] },
+            { name: "Vayne", cost: 3, traits: ["Scrap", "Sniper"] },
+            { name: "Zoe", cost: 3, traits: ["Heartsteel", "Mage"] },
+            { name: "Poppy", cost: 3, traits: ["Yordle", "Bastion"] },
+            { name: "Neeko", cost: 3, traits: ["Ixtal", "Bastion"] },
+            { name: "Ekko", cost: 3, traits: ["Zaun", "Piltover"] },
+            { name: "Ashe", cost: 3, traits: ["Freljord", "Quickstriker"] },
+            { name: "Yorick", cost: 2, traits: ["Shadow Isles", "Bastion"] },
+            { name: "Tryndamere", cost: 2, traits: ["Freljord", "Slayer"] },
+            { name: "Tristana", cost: 2, traits: ["Yordle", "Gunner"] },
+            { name: "Teemo", cost: 2, traits: ["Yordle", "Multicaster"] },
+            { name: "Sion", cost: 2, traits: ["Noxus", "Bruiser"] },
+            { name: "Rek'Sai", cost: 2, traits: ["Void", "Vanquisher"] },
+            { name: "Orianna", cost: 2, traits: ["Piltover", "Invoker"] },
+            { name: "Graves", cost: 2, traits: ["Gunner"] },
+            { name: "Cho'Gath", cost: 2, traits: ["Void", "Juggernaut"] },
+            { name: "Bard", cost: 2, traits: ["Caretaker"] },
+            { name: "Aphelios", cost: 2, traits: ["Targon", "Deadeye"] },
+            { name: "Yasuo", cost: 2, traits: ["Ionia", "Challenger"] },
+            { name: "Xin Zhao", cost: 2, traits: ["Demacia", "Juggernaut"] },
+            { name: "Vi", cost: 2, traits: ["Piltover", "Bruiser"] },
+            { name: "Twisted Fate", cost: 2, traits: ["Multicaster"] },
+            { name: "Sona", cost: 1, traits: ["Demacia", "Mage"] },
+            { name: "Rumble", cost: 1, traits: ["Scrap", "Blaster"] },
+            { name: "Qiyana", cost: 1, traits: ["Ixtal", "Slayer"] },
+            { name: "Illaoi", cost: 1, traits: ["Bilgewater", "Brawler"] },
+            { name: "Briar", cost: 1, traits: ["Ravenous"] },
+            { name: "Blitzcrank", cost: 1, traits: ["Zaun", "Juggernaut"] },
+            { name: "Anivia", cost: 1, traits: ["Freljord", "Invoker"] },
+            { name: "Viego", cost: 1, traits: ["Shadow Isles", "Slayer"] },
+            { name: "Shen", cost: 1, traits: ["Ionia", "Bastion"] },
+            { name: "Lulu", cost: 1, traits: ["Yordle", "Enchanter"] },
+            { name: "Kog'Maw", cost: 1, traits: ["Void", "Arcanist"] },
+            { name: "Jhin", cost: 1, traits: ["Ionia", "Gunslinger"] },
+            { name: "Jarvan IV", cost: 1, traits: ["Demacia", "Strategist"] },
+            { name: "Caitlyn", cost: 1, traits: ["Piltover", "Longshot"] }
+        ];
+
+        const btnRoll = document.getElementById('btn-roll');
+        const emptyState = document.getElementById('empty-state');
+        const champCard = document.getElementById('champ-card');
+        const uiImg = document.getElementById('ui-img');
+        const uiName = document.getElementById('ui-name');
+        const uiCost = document.getElementById('ui-cost');
+        const uiTraits = document.getElementById('ui-traits');
+        const costFilters = document.querySelectorAll('.cost-filter');
+
+        const COLORS = { 1: '#94a3b8', 2: '#22c55e', 3: '#3b82f6', 4: '#a855f7', 5: '#eab308', 7: '#eab308' };
+
+        function roll() {
+            const activeCosts = Array.from(costFilters).filter(c => c.checked).map(c => parseInt(c.value));
+            if (activeCosts.length === 0) return alert("Vui lÃ²ng chá»n Ã­t nháº¥t 1 má»©c giÃ¡!");
+
+            const targetCosts = [...activeCosts];
+            if (targetCosts.includes(5)) targetCosts.push(7);
+
+            const pool = championsData.filter(c => targetCosts.includes(c.cost));
+            if (pool.length === 0) return alert("KhÃ´ng tÃ¬m tháº¥y tÆ°á»›ng!");
+
+            const pick = pool[Math.floor(Math.random() * pool.length)];
+            render(pick);
+        }
+
+        function render(c) {
+            champCard.classList.remove('animate-reveal');
+            void champCard.offsetWidth; // Trigger reflow to restart animation
+            champCard.classList.add('animate-reveal');
+
+            emptyState.classList.add('hidden');
+            champCard.classList.remove('hidden');
+
+            uiName.innerText = c.name;
+            uiCost.innerText = `${c.cost}V`;
+            uiCost.style.backgroundColor = COLORS[c.cost];
+            
+            let imgUrl = imageMap[c.name];
+            
+            if (!imgUrl) {
+                const cleanName = c.name.replace(/'/g, '').replace(/\s/g, '').replace(/&/g, '');
+                imgUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${cleanName}_0.jpg`;
+            }
+            
+            uiImg.src = imgUrl;
+            uiImg.onerror = function() {
+                this.onerror = null;
+                this.src = `https://via.placeholder.com/400x560/0a1428/c89b3c?text=${encodeURIComponent(c.name)}`;
+            };
+
+            champCard.className = `w-72 md:w-80 p-1 rounded-2xl bg-[#010a13] relative overflow-hidden animate-reveal cost-${c.cost}`;
+
+            uiTraits.innerHTML = '';
+            c.traits.forEach(t => {
+                const badge = document.createElement('span');
+                badge.className = 'text-[10px] font-bold bg-white/10 px-2 py-1 rounded border border-white/20 text-white uppercase tracking-tighter';
+                badge.innerText = t;
+                uiTraits.appendChild(badge);
+            });
+        }
+
+        btnRoll.addEventListener('click', roll);
+    </script>
+</body>
+</html>
