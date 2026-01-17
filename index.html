@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFT Season 16 Randomizer - Into the Arcane</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
     <style>
         body {
             background: radial-gradient(circle at center, #0a1428 0%, #050a14 100%);
@@ -15,8 +18,10 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
-        h1, h2, .font-game {
+
+        h1,
+        h2,
+        .font-game {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -25,7 +30,7 @@
         .hextech-border {
             border: 2px solid transparent;
             background: linear-gradient(#0a1428, #0a1428) padding-box,
-                        linear-gradient(to bottom, #c89b3c, #785a28) border-box;
+                linear-gradient(to bottom, #c89b3c, #785a28) border-box;
             box-shadow: 0 0 15px rgba(200, 155, 60, 0.3);
         }
 
@@ -33,7 +38,7 @@
             background: linear-gradient(135deg, #c8aa6e 0%, #785a28 100%);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #f0e6d2;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             cursor: pointer;
         }
 
@@ -43,26 +48,113 @@
             filter: brightness(1.2);
         }
 
-        .cost-1 { border: 4px solid #94a3b8; } 
-        .cost-2 { border: 4px solid #22c55e; }  
-        .cost-3 { border: 4px solid #3b82f6; } 
-        .cost-4 { border: 4px solid #a855f7; } 
-        .cost-5, .cost-7 { border: 4px solid #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.6); }
+        .cost-1 {
+            border: 4px solid #94a3b8;
+        }
+
+        .cost-2 {
+            border: 4px solid #22c55e;
+        }
+
+        .cost-3 {
+            border: 4px solid #3b82f6;
+        }
+
+        .cost-4 {
+            border: 4px solid #a855f7;
+        }
+
+        .cost-5,
+        .cost-7 {
+            border: 4px solid #eab308;
+            box-shadow: 0 0 25px rgba(234, 179, 8, 0.6);
+        }
 
         @keyframes revealCard {
-            0% { opacity: 0; transform: scale(0.8) translateY(30px); filter: blur(10px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+                filter: blur(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
         }
 
         .animate-reveal {
             animation: revealCard 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
+        .hextech-button {
+            background: linear-gradient(135deg, #22d3ee 0%, #0c4a6e 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #cffafe;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .hextech-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+            filter: brightness(1.2);
+        }
+
+        /* Trait Result specific styles */
+        .trait-header {
+            background: linear-gradient(to right, rgba(10, 20, 40, 0), rgba(34, 211, 238, 0.2), rgba(10, 20, 40, 0));
+        }
+
+        .champ-mini-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .champ-mini-card:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .bridge-unit {
+            border-color: #fcd34d !important;
+            /* Amber-300 */
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.4);
+        }
+
+        .synergy-section {
+            background: linear-gradient(to top, rgba(34, 211, 238, 0.05), transparent);
+            border-top: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
         .hex-bg-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill-opacity='0.05' fill='%23c89b3c' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
+
+        .suggestion-card {
+            border: 1px dashed #c8aa6e;
+            opacity: 0.9;
+            transform: scale(0.95);
+        }
+
+        .suggestion-card:hover {
+            border: 1px solid #c8aa6e;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .plus-icon {
+            font-size: 24px;
+            color: #c8aa6e;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
+
 <body class="hex-bg-pattern flex flex-col items-center py-10 px-4">
 
     <header class="text-center mb-8">
@@ -75,25 +167,31 @@
 
     <main class="w-full max-w-4xl space-y-8">
         <section class="hextech-border p-6 rounded-lg backdrop-blur-md bg-black/40 text-center">
-            <h2 class="text-xl font-bold mb-4 text-[#c8aa6e] border-b border-[#785a28] pb-2 uppercase">Bộ lọc vàng (Gold)</h2>
+            <h2 class="text-xl font-bold mb-4 text-[#c8aa6e] border-b border-[#785a28] pb-2 uppercase">Bộ lọc vàng
+                (Gold)</h2>
             <div class="flex flex-wrap gap-3 justify-center">
-                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                <label
+                    class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
                     <input type="checkbox" value="1" checked class="cost-filter accent-[#c89b3c]">
                     <span>1 Vàng</span>
                 </label>
-                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                <label
+                    class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
                     <input type="checkbox" value="2" checked class="cost-filter accent-[#c89b3c]">
                     <span>2 Vàng</span>
                 </label>
-                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                <label
+                    class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
                     <input type="checkbox" value="3" checked class="cost-filter accent-[#c89b3c]">
                     <span>3 Vàng</span>
                 </label>
-                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                <label
+                    class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
                     <input type="checkbox" value="4" checked class="cost-filter accent-[#c89b3c]">
                     <span>4 Vàng</span>
                 </label>
-                <label class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
+                <label
+                    class="flex items-center space-x-2 cursor-pointer bg-[#0a1428] px-4 py-2 rounded-md border border-[#785a28] hover:border-[#c89b3c] transition">
                     <input type="checkbox" value="5" checked class="cost-filter accent-[#c89b3c]">
                     <span>5-7 Vàng</span>
                 </label>
@@ -103,27 +201,70 @@
         <section class="flex flex-col items-center">
             <div id="result-area" class="min-h-[480px] w-full flex justify-center items-center">
                 <div id="empty-state" class="text-center opacity-30">
-                    <div class="w-56 h-72 border-2 border-dashed border-[#785a28] rounded-2xl flex items-center justify-center mb-4 text-7xl font-game">?</div>
+                    <div
+                        class="w-56 h-72 border-2 border-dashed border-[#785a28] rounded-2xl flex items-center justify-center mb-4 text-7xl font-game">
+                        ?</div>
                     <p class="uppercase tracking-widest">Sẵn sàng để ROLL!</p>
                 </div>
 
-                <div id="champ-card" class="hidden w-72 md:w-80 p-1 rounded-2xl bg-[#010a13] relative overflow-hidden transition-all duration-300">
+                <div id="champ-card"
+                    class="hidden w-72 md:w-80 p-1 rounded-2xl bg-[#010a13] relative overflow-hidden transition-all duration-300">
                     <div class="aspect-[3/4.2] overflow-hidden rounded-t-xl relative bg-[#0a1428]">
                         <img id="ui-img" src="" alt="Tướng" class="w-full h-full object-cover">
-                        <div id="ui-cost" class="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center font-bold text-black shadow-2xl text-xl border-2 border-white/20">
+                        <div id="ui-cost"
+                            class="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center font-bold text-black shadow-2xl text-xl border-2 border-white/20">
                             1
                         </div>
                     </div>
                     <div class="p-6 text-center bg-gradient-to-b from-[#1a2e4d] to-[#050a14]">
-                        <h3 id="ui-name" class="text-3xl font-bold font-game mb-4 text-white drop-shadow-lg leading-tight">NAME</h3>
+                        <h3 id="ui-name"
+                            class="text-3xl font-bold font-game mb-4 text-white drop-shadow-lg leading-tight">NAME</h3>
                         <div id="ui-traits" class="flex flex-wrap justify-center gap-2"></div>
                     </div>
                 </div>
+                <div id="trait-result-card"
+                    class="hidden w-full max-w-4xl p-1 rounded-2xl bg-[#010a13] relative overflow-hidden transition-all duration-300 border border-[#22d3ee]/30 shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+                    <div class="trait-header p-6 text-center border-b border-[#22d3ee]/20">
+                        <div class="flex flex-col items-center justify-center gap-4">
+                            <div
+                                class="w-20 h-20 rounded-full bg-[#0a1428] border-2 border-[#22d3ee] flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] overflow-hidden">
+                                <img id="trait-ui-icon" src="" alt="Trait" class="w-full h-full object-cover">
+                            </div>
+                            <h3 id="trait-ui-name"
+                                class="text-4xl font-bold font-game text-[#22d3ee] drop-shadow-lg tracking-wider uppercase">
+                                TRAIT NAME</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-b from-[#0c202e] to-[#050a14]">
+                        <div id="trait-champ-list" class="flex flex-wrap justify-center gap-4">
+                            <!-- Mini cards will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Synergy Suggestion Section -->
+                    <div id="synergy-container" class="synergy-section p-6 text-center hidden">
+                        <h4 class="text-xl font-bold text-[#c8aa6e] mb-2 uppercase tracking-wide">Gợi ý đội hình
+                            (Synergy)</h4>
+                        <p id="synergy-reason" class="text-sm text-gray-300 mb-4 italic max-w-2xl mx-auto"></p>
+                        <div id="synergy-list" class="flex flex-wrap justify-center gap-6">
+                            <!-- Synergy icons will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
 
-            <button id="btn-roll" class="mt-8 px-20 py-5 rounded-md font-game text-3xl gold-button text-white font-bold tracking-widest uppercase">
-                ROLL TƯỚNG
-            </button>
+            <div class="flex flex-col md:flex-row gap-4 mt-8 w-full justify-center px-4">
+                <button id="btn-roll"
+                    class="flex-1 max-w-xs px-8 py-5 rounded-md font-game text-2xl md:text-3xl gold-button text-white font-bold tracking-widest uppercase truncate">
+                    ROLL TƯỚNG
+                </button>
+                <button id="btn-roll-trait"
+                    class="flex-1 max-w-xs px-8 py-5 rounded-md font-game text-2xl md:text-3xl hextech-button text-white font-bold tracking-widest uppercase truncate">
+                    ROLL TỘC HỆ
+                </button>
+            </div>
         </section>
     </main>
 
@@ -342,22 +483,183 @@
         const uiTraits = document.getElementById('ui-traits');
         const costFilters = document.querySelectorAll('.cost-filter');
 
+        const btnRollTrait = document.getElementById('btn-roll-trait');
+        const traitResultCard = document.getElementById('trait-result-card');
+        const traitUiIcon = document.getElementById('trait-ui-icon');
+        const traitUiName = document.getElementById('trait-ui-name');
+        const traitChampList = document.getElementById('trait-champ-list');
+
+        // Analyze Data & Create Structure
+        const allTraits = [...new Set(championsData.flatMap(c => c.traits))].sort();
+        const traitsInfo = {};
+        allTraits.forEach(t => {
+            // Using a generic pattern for trait icons from CommunityDragon. 
+            // Note: Some might fail and use the onerror fallback.
+            const safeName = t.toLowerCase().replace(/[^a-z0-9]/g, '');
+            traitsInfo[t] = {
+                icon: `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/tft/images/traits/${safeName}.png`,
+                desc: t
+            };
+        });
+
+        // Synergy Data Map
+        const synergyMap = {
+            // --- Nhóm Tấn Công (Offensive) ---
+            "Noxus": {
+                partners: ["Slayer", "Juggernaut", "Vanquisher"],
+                advice: "Đội hình 'Máu chiến'. Dồn đồ sát thương cho Ambessa/Darius. Cần Darius 3 sao hoặc Ambessa gánh team.",
+                style: "⚔️ Aggro / Reroll"
+            },
+            "Gunner": {
+                partners: ["Piltover", "Zaun", "Bilgewater"],
+                advice: "Bảo kê Jinx hoặc Gangplank. Piltover (T-Hex) là tanker tốt nhất để Gunner có thời gian tích số.",
+                style: "🔫 Backline Carry"
+            },
+            "Mage": {
+                partners: ["Arcane", "Bastion", "Demacia"],
+                advice: "Kẹp Arcane để hack năng lượng. Cần Bastion (Taric/Shen) câu giờ để các pháp sư tung chiêu 2 lần.",
+                style: "✨ Burst Damage"
+            },
+            "Challenger": {
+                partners: ["Ionia", "Juggernaut", "Shadow Isles"],
+                advice: "Kai'Sa và Yasuo là cặp đôi hủy diệt. Kẹp Juggernaut (Warwick/Sett) để trừ giáp đối phương.",
+                style: "⚡ Speed / Reset"
+            },
+            "Slayer": {
+                partners: ["Noxus", "Shadow Isles", "Demacia"],
+                advice: "Gwen và Aatrox cần đồ hút máu. Đội hình này rất mỏng, bắt buộc phải có Shen hoặc Taric bảo kê.",
+                style: "🩸 Melee Carry"
+            },
+            "Invoker": {
+                partners: ["Freljord", "Targon", "Bastion"],
+                advice: "Đội hình 'Vô hạn mana'. Ryze hoặc Karma spam chiêu. Cần Shen làm tank chính.",
+                style: "🌀 Spell Spam"
+            },
+            "Arcane": {
+                partners: ["Mage", "God", "Council"],
+                advice: "Kích hoạt mốc cao nhất cho Zaahen hoặc Viktor (nếu có). Mel là unit hỗ trợ chủ lực cực mạnh.",
+                style: "🔮 Vertical Magic"
+            },
+            "Vanquisher": { // Ambessa's trait
+                partners: ["Noxus", "Ionia"],
+                advice: "Tập trung chí mạng cho Xayah hoặc Nilah. Ambessa ở tuyến trên gây rối loạn.",
+                style: "🗡️ Crit Damage"
+            },
+
+            // --- Nhóm Phòng Thủ (Defensive) ---
+            "Bastion": {
+                partners: ["Targon", "Invoker", "Shadow Isles"],
+                advice: "Bức tường thép. Hãy kẹp Aphelios (Targon) hoặc Ryze (Invoker) để có sát thương đầu ra.",
+                style: "🛡️ Super Tank"
+            },
+            "Bruiser": {
+                partners: ["Void", "Freljord", "Shurima"],
+                advice: "Lượng máu khổng lồ. Kẹp Renekton/Cho'Gath đầu game, xoay sang Kai'Sa/Azir cuối game.",
+                style: "🥩 HP Stack"
+            },
+            "Juggernaut": {
+                partners: ["Noxus", "Demacia", "Zaun"],
+                advice: "Vừa trâu vừa có sát thương. Nasus và Aatrox là 2 quái vật gánh team về late.",
+                style: "🛡️ Off-Tank"
+            },
+
+            // --- Nhóm Đặc Biệt / Kinh Tế ---
+            "Void": {
+                partners: ["Bruiser", "Sorcerer"],
+                advice: "Bắt buộc lấy Baron Nashor ở mốc 8. Giữ máu bằng Bruiser (Cho'Gath/Rek'Sai).",
+                style: "👾 Summoner"
+            },
+            "Piltover": {
+                partners: ["Gunner", "Zaun"],
+                advice: "Tích chuỗi thua nuôi T-Hex. Khi nổ hũ, hãy dồn đồ cho Jinx hoặc Zeri.",
+                style: "💰 Economy / Gamble"
+            },
+            "Shurima": {
+                partners: ["Strategist", "Juggernaut"],
+                advice: "Nuôi Azir và Nasus. Cần câu giờ 8 giây để Thăng Hoa -> Hóa thần.",
+                style: "☀️ Ascend"
+            },
+            "Bilgewater": {
+                partners: ["Gunner", "Strategist"],
+                advice: "Miss Fortune và Gangplank dồn dam diện rộng. Đội hình này cần kết thúc trận đấu nhanh.",
+                style: "💣 AoE Damage"
+            },
+            "Ionia": {
+                partners: ["Challenger", "Vanquisher"],
+                advice: "Ahri và Yasuo là 2 chủ lực. Ionia cung cấp chỉ số linh hoạt, rất dễ xoay bài.",
+                style: "☯️ Flexible"
+            },
+            "Demacia": {
+                partners: ["Slayer", "Strategist"],
+                advice: "Tận dụng Trang bị Ánh Sáng miễn phí. Lux và Garen là cặp đôi công thủ toàn diện.",
+                style: "👑 Elite"
+            },
+            "Freljord": {
+                partners: ["Deadeye", "Invoker"],
+                advice: "Hiệu ứng Giảm giáp/Kháng phép toàn bản đồ. Cực mạnh khi kẹp với Ashe hoặc Aphelios.",
+                style: "❄️ Debuff"
+            },
+            "Targon": {
+                partners: ["Bastion", "Invoker"],
+                advice: "Giáp ảo vô hạn. Cần kẹp tanker như Taric/Shen để câu giờ cho Aphelios tích quỷ thư.",
+                style: "⛰️ Healing/Shield"
+            },
+            "Shadow Isles": {
+                partners: ["Slayer", "Bastion"],
+                advice: " Gwen múa rất đau nhưng cần Viego/Maokai kích hệ. Cần thêm sát thương tuyến sau.",
+                style: "👻 Shield Reset"
+            },
+            "Zaun": {
+                partners: ["Gunner", "Piltover"],
+                advice: "Mod Hóa Kỹ rất mạnh. Nên dồn cho Zeri hoặc Urgot để tối ưu sát thương.",
+                style: "🧪 Chemtank/Carry"
+            },
+            "Strategist": {
+                partners: ["Shurima", "Demacia"],
+                advice: "Buff lá chắn cho hàng trên và AP cho hàng dưới. Azir là chìa khóa.",
+                style: "♟️ Tactical Buff"
+            },
+            "Multicaster": {
+                partners: ["Demacia", "Void"],
+                advice: "Sona và Vel'Koz cần Blue Buff để spam chiêu liên tục. Hàng tank phải cực khỏe.",
+                style: "🔥 Spell Multiplier"
+            },
+            "Sorcerer": {
+                partners: ["Void", "Strategist"],
+                advice: "Ahri hoặc Lux là carry chính. Taric là tank bắt buộc phải có.",
+                style: "🧙‍♂️ Magic Burst"
+            },
+            "Rogue": { // Assuming Rogue exists or mapping to Slayer/similar if needed, strictly sticking to user traits though
+                partners: ["Slayer", "Ixtal"],
+                advice: "Qiyana và Katarina (nếu có) ám sát hàng sau. Cần dồn sát thương nhanh.",
+                style: "🗡️ Assassin"
+            }
+        };
+
+        const synergyContainer = document.getElementById('synergy-container');
+        const synergyReason = document.getElementById('synergy-reason');
+        const synergyList = document.getElementById('synergy-list');
+
         const COLORS = { 1: '#94a3b8', 2: '#22c55e', 3: '#3b82f6', 4: '#a855f7', 5: '#eab308', 7: '#eab308' };
 
         function roll() {
             const activeCosts = Array.from(costFilters).filter(c => c.checked).map(c => parseInt(c.value));
-            // Đã sửa: Thông báo
             if (activeCosts.length === 0) return alert("Vui lòng chọn ít nhất 1 mức giá!");
 
             const targetCosts = [...activeCosts];
             if (targetCosts.includes(5)) targetCosts.push(7);
 
             const pool = championsData.filter(c => targetCosts.includes(c.cost));
-            // Đã sửa: Thông báo
             if (pool.length === 0) return alert("Không tìm thấy tướng!");
 
             const pick = pool[Math.floor(Math.random() * pool.length)];
             render(pick);
+        }
+
+        function rollTrait() {
+            const randomTrait = allTraits[Math.floor(Math.random() * allTraits.length)];
+            const champions = championsData.filter(c => c.traits.includes(randomTrait));
+            renderTrait(randomTrait, champions);
         }
 
         function render(c) {
@@ -366,21 +668,22 @@
             champCard.classList.add('animate-reveal');
 
             emptyState.classList.add('hidden');
+            traitResultCard.classList.add('hidden');
             champCard.classList.remove('hidden');
 
             uiName.innerText = c.name;
             uiCost.innerText = `${c.cost}V`;
             uiCost.style.backgroundColor = COLORS[c.cost];
-            
+
             let imgUrl = imageMap[c.name];
-            
+
             if (!imgUrl) {
                 const cleanName = c.name.replace(/'/g, '').replace(/\s/g, '').replace(/&/g, '');
                 imgUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${cleanName}_0.jpg`;
             }
-            
+
             uiImg.src = imgUrl;
-            uiImg.onerror = function() {
+            uiImg.onerror = function () {
                 this.onerror = null;
                 this.src = `https://via.placeholder.com/400x560/0a1428/c89b3c?text=${encodeURIComponent(c.name)}`;
             };
@@ -396,7 +699,140 @@
             });
         }
 
+
+        function renderTrait(trait, champions) {
+            emptyState.classList.add('hidden');
+            champCard.classList.add('hidden');
+            traitResultCard.classList.remove('hidden');
+
+            // Reset animation
+            traitResultCard.classList.remove('animate-reveal');
+            void traitResultCard.offsetWidth;
+            traitResultCard.classList.add('animate-reveal');
+
+            traitUiName.innerText = trait;
+
+            // Icon handling
+            const iconUrl = traitsInfo[trait] ? traitsInfo[trait].icon : "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/hextech-images/chest.png";
+            traitUiIcon.src = iconUrl;
+            traitUiIcon.onerror = function () {
+                this.onerror = null;
+                this.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/hextech-images/chest.png";
+            };
+
+            // 1. RENDER TƯỚNG CHÍNH (MAIN UNITS)
+            traitChampList.innerHTML = '<div class="w-full text-center text-[#22d3ee] mb-2 uppercase font-bold tracking-widest text-sm">--- Tướng thuộc hệ ---</div>';
+
+            champions.sort((a, b) => a.cost - b.cost);
+            champions.forEach(c => {
+                const card = createMiniCard(c, false);
+                traitChampList.appendChild(card);
+            });
+
+            // 2. XỬ LÝ SYNERGY (GỢI Ý THEO ROLE)
+            const synergy = synergyMap[trait];
+            if (synergy) {
+                synergyContainer.classList.remove('hidden');
+                synergyReason.innerHTML = `
+                    <div class="mb-2"><span class="text-[#c8aa6e] font-bold text-lg">${synergy.style}</span></div>
+                    <div class="text-gray-300 italic">"${synergy.advice}"</div>
+                `;
+                synergyList.innerHTML = '';
+
+                // Helper to classify roles based on traits
+                const TANK_TRAITS = ["Bastion", "Bruiser", "Juggernaut", "Sentinel", "Strategist"];
+                const CARRY_TRAITS = ["Gunner", "Mage", "Slayer", "Challenger", "Vanquisher", "Sorcerer", "Arcanist", "Deadeye", "Rogue", "Multicaster", "Sniper"];
+
+                const frontliners = [];
+                const carries = [];
+
+                synergy.partners.forEach(partner => {
+                    // Find units in partner trait (excluding current trait units)
+                    let potentialUnits = championsData.filter(c =>
+                        c.traits.includes(partner) && !c.traits.includes(trait)
+                    );
+
+                    potentialUnits.forEach(unit => {
+                        // Avoid duplicates if added by another partner trait
+                        if (frontliners.some(u => u.name === unit.name) || carries.some(u => u.name === unit.name)) return;
+
+                        const isTank = unit.traits.some(t => TANK_TRAITS.includes(t));
+                        const isCarry = unit.traits.some(t => CARRY_TRAITS.includes(t));
+
+                        if (isTank) frontliners.push(unit);
+                        else if (isCarry) carries.push(unit);
+                        else {
+                            // Default fallback logic
+                            if (unit.cost >= 3) carries.push(unit); else frontliners.push(unit);
+                        }
+                    });
+                });
+
+                // Render Helper
+                const renderGroup = (title, units, icon) => {
+                    if (units.length === 0) return;
+                    units.sort((a, b) => b.cost - a.cost); // Priority High Cost
+                    const topUnits = units.slice(0, 3); // Take top 3
+
+                    const groupContainer = document.createElement('div');
+                    groupContainer.className = "flex flex-col items-center w-full md:w-auto bg-white/5 p-4 rounded-xl border border-white/10";
+
+                    groupContainer.innerHTML = `<div class="text-[#c8aa6e] font-bold mb-3 uppercase text-sm tracking-wider flex items-center gap-2">${icon} ${title}</div>`;
+
+                    const cardRow = document.createElement('div');
+                    cardRow.className = "flex gap-3 justify-center flex-wrap";
+
+                    topUnits.forEach(u => {
+                        cardRow.appendChild(createMiniCard(u, true));
+                    });
+
+                    groupContainer.appendChild(cardRow);
+                    synergyList.appendChild(groupContainer);
+                };
+
+                // Render Frontline then Carry
+                renderGroup("Hàng Tank (Frontline)", frontliners, "🛡️");
+                renderGroup("Chủ Lực (Carry)", carries, "⚔️");
+
+            } else {
+                synergyContainer.classList.remove('hidden');
+                synergyReason.innerText = "Cân bằng giữa Chống chịu (Tank) và Sát thương (Damage).";
+                synergyList.innerHTML = '<span class="text-gray-500 text-sm">(Chưa có dữ liệu đội hình cụ thể)</span>';
+            }
+        }
+
+        // Hàm phụ để tạo thẻ tướng (giúp code gọn hơn)
+        function createMiniCard(c, isSuggestion) {
+            const miniCard = document.createElement('div');
+            const baseClass = isSuggestion
+                ? "suggestion-card w-20 md:w-24 rounded-lg bg-[#010a13] relative overflow-hidden cursor-help"
+                : `champ-mini-card w-24 md:w-32 rounded-lg bg-[#010a13] relative overflow-hidden cost-${c.cost} border-2 cursor-pointer`;
+
+            miniCard.className = baseClass;
+
+            let imgUrl = imageMap[c.name];
+            if (!imgUrl) {
+                const cleanName = c.name.replace(/'/g, '').replace(/\s/g, '').replace(/&/g, '');
+                imgUrl = `https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${cleanName}_0.jpg`;
+            }
+
+            miniCard.innerHTML = `
+        <div class="aspect-[3/4] relative">
+            <img src="${imgUrl}" class="w-full h-full object-cover ${isSuggestion ? 'opacity-80' : ''}">
+            <div class="absolute bottom-0 w-full bg-black/70 text-white text-[10px] md:text-xs font-bold text-center py-1 truncate px-1">
+                ${c.name}
+            </div>
+            <div class="absolute top-1 right-1 w-5 h-5 rounded-full flex items-center justify-center font-bold text-black shadow-lg text-xs" style="background-color: ${COLORS[c.cost]}">
+                ${c.cost}
+            </div>
+            ${isSuggestion ? '<div class="absolute top-0 left-0 bg-[#c8aa6e] text-black text-[9px] font-bold px-1 rounded-br">+ADD</div>' : ''}
+        </div>
+    `;
+            return miniCard;
+        }
         btnRoll.addEventListener('click', roll);
+        btnRollTrait.addEventListener('click', rollTrait);
     </script>
 </body>
+
 </html>
